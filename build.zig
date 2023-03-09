@@ -6,10 +6,11 @@ pub fn build(b: *std.build.Builder) void {
     const mode = b.standardReleaseOptions();
     const target = b.standardTargetOptions(.{ .default_target = .{ .cpu_arch = .wasm32, .os_tag = .wasi } });
 
-    const lib = b.addExecutable("Wig", "src/main.zig");
-    lib.setBuildMode(mode);
-    lib.setTarget(target);
-    lib.install();
+    const exe = b.addExecutable("Wig", "src/main.zig");
+    exe.setBuildMode(mode);
+    exe.setTarget(target);
+    exe.setOutputDir("www/bin/");
+    exe.install();
 
     const main_tests = b.addTest("src/main.zig");
     main_tests.setBuildMode(mode);

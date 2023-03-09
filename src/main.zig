@@ -1,15 +1,9 @@
 const std = @import("std");
 const testing = std.testing;
 
-export fn add(a: i32, b: i32) i32 {
-    return a + b;
-}
+extern fn jsPrint(message: [*]const u8, length: u32) void;
 
 pub fn main() !void {
-    const total = add(3, 7);
-    std.debug.print("3 + 7 = {}\n", .{total});
-}
-
-test "basic add functionality" {
-    try testing.expect(add(3, 7) == 10);
+    const message = "Hello, world!";
+    jsPrint(message, message.len);
 }

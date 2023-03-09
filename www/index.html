@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wig Application</title>
+  </head>
+  <body>
+    <script>
+      var exports = null;
+
+      const importObject = {
+        env: {
+          jsPrint: (message, length) => {
+            var buffer = new Uint8Array(exports.memory.buffer, message, length);
+            var decoder = new TextDecoder();
+            var string = decoder.decode(buffer);
+            console.log(string);
+          },
+        },
+
+        wasi_snapshot_preview1: {
+          proc_exit: (code) => {
+            console.log("Process exited with code: " + code);
+            window.close();
+          },
+
+          fd_write: (fd, iovs_ptr, iovs_len, nwritten_ptr) => {},
+        },
+      };
+
+      async function runWasiApp() {
+        const response = await fetch("./bin/Wig.wasm");
+        const module = await WebAssembly.instantiateStreaming(
+          response,
+          importObject
+        );
+        exports = module.instance.exports;
+        exports._start();
+      }
+
+      runWasiApp();
+    </script>
+  </body>
+</html>
