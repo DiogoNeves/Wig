@@ -33,6 +33,14 @@ To run the Wasm module using Wasmer, you can execute the following command:
 wasmer run app.wasm
 ```
 
+## Explanation
+
+This template repository is designed to be a simple starting point for creating Zig-based Wasm applications.  
+The `src/main.zig` file contains the entry point for the application.  
+The `zig build` command will automatically compile the `src/main.zig` file into a Wasm module and save it to the `www/bin` folder.
+
+The `www/index.html` file contains a simple HTML page that loads the Wasm module and executes it.
+
 ## Contributing
 
 If you would like to contribute to this project, feel free to submit a pull request or create an issue. For substantial changes such as restructuring or redesigning the project, it is recommended that you discuss the changes in a GitHub issue before submitting a pull request.
