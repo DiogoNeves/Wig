@@ -1,6 +1,8 @@
 # Wig - Zig Wasm Application Template
 
-This is a simple template repository for creating Zig-based WebAssembly (Wasm) applications.
+This is a simple template repository for creating Zig-based WebAssembly (Wasm) applications.  
+
+Currently the application logs a simple `Hello World!` to the console (no other output).
 
 ## Getting Started
 
